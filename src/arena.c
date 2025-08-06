@@ -6,7 +6,6 @@
  */
 
 #include "arena.h"
-#include <string.h>
 
 static inline size_t align_size(size_t size) {
     return (size + sizeof(void*) - 1) & ~(sizeof(void*) - 1);

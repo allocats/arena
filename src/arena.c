@@ -1,3 +1,10 @@
+/*
+ *
+ *  Inspired by tsoding's implementation at https://github.com/tsoding/arena
+ *  Original work licensed under MIT License
+ *
+ */
+
 #include "arena.h"
 
 static inline size_t align_size(size_t size) {

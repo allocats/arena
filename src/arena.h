@@ -30,11 +30,13 @@ Block* new_block(size_t size);
 void free_block(Block* block);
 
 void* arena_alloc(Arena* arena, size_t size);
+void* arena_realloc(Arena* arena, void* ptr, size_t old_size, size_t new_size);
 void* arena_memcpy(void* dest, const void* src, size_t len);
 char* arena_strdup(Arena* arena, const char* str);
 
 void arena_free(Arena* arena); 
 
-size_t total_memory(Arena* arena);
+size_t total_capacity(Arena* arena);
+size_t total_usage(Arena* arena); 
 
 #endif // !ARENA_H

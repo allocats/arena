@@ -24,6 +24,7 @@ Block* new_block(size_t size) {
 
     size_t total_size = sizeof(Block) + sizeof(uintptr_t) * capacity;
     Block* block = (Block*) malloc(total_size);
+    assert(block);
 
     block -> next = NULL;
     block -> usage =  0;

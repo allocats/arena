@@ -8,6 +8,7 @@
 #ifndef ARENA_H
 #define ARENA_H 
 
+#include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
 

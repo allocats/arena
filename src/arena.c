@@ -6,6 +6,7 @@
  */
 
 #include "arena.h"
+#include <string.h>
 
 static inline size_t align_size(size_t size) {
     return (size + sizeof(void*) - 1) & ~(sizeof(void*) - 1);
@@ -46,10 +47,14 @@ void* arena_alloc(Arena* arena, size_t size) {
         arena -> start = arena -> end;
     }
 
+    while (arena -> end -> usage + size > arena -> end -> capacity && arena -> end -> next != NULL) {
+        arena -> end = arena -> end -> next;
+    } 
+
     if (arena -> end -> usage + size > arena -> end -> capacity) {
-        Block* block = new_block(size);
-        arena -> end -> next = block;
-        arena -> end = block;
+            Block* block = new_block(size);
+            arena -> end -> next = block;
+            arena -> end = block;
     }
 
     void* result = (char*) &arena -> end -> data + arena -> end -> usage;
@@ -97,6 +102,13 @@ char* arena_strdup(Arena* arena, const char* str) {
     duplicate[len] = '\0';
 
     return duplicate;
+}
+
+void arena_reset(Arena* arena) {
+    for (Block* block = arena -> start; block != NULL; block = block -> next) {
+        block -> usage = 0;
+    }
+    arena -> end = arena -> start;
 }
 
 void arena_free(Arena* arena) {

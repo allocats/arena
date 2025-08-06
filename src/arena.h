@@ -12,7 +12,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define DEFAULT_CAPACITY 8 
+#define DEFAULT_CAPACITY (8 * 1024) 
 
 typedef struct Block {
     struct Block* next;
@@ -34,6 +34,7 @@ void* arena_realloc(Arena* arena, void* ptr, size_t old_size, size_t new_size);
 void* arena_memcpy(void* dest, const void* src, size_t len);
 char* arena_strdup(Arena* arena, const char* str);
 
+void arena_reset(Arena* arena);
 void arena_free(Arena* arena); 
 
 size_t total_capacity(Arena* arena);

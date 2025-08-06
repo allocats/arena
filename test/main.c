@@ -27,12 +27,13 @@ int main() {
 
     Person* person = (Person*) arena_alloc(&arena, sizeof(Person));
 
-    person -> name = arena_strdup(&arena, "Plink Plonk");
+    person -> name = arena_strdup(&arena, "Plink");
     person -> age = 21;
     person -> memcpy_test = (int*) arena_alloc(&arena, sizeof(int));
     arena_memcpy(person -> memcpy_test, b, sizeof(b));
 
     printf("addr: %p, name: %s, age: %d, memcpy_test: %d\n", person, person -> name, person -> age, *person -> memcpy_test);
+    printf("\n== Total Memory: %zu bytes ==\n", total_memory(&arena));
 
     arena_free(&arena);
 }

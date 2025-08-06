@@ -1,4 +1,4 @@
-rm -rvf build
+rm -rvf build >/dev/null
 mkdir -p build/bin
 
 clang -c src/arena.c -o build/arena.o

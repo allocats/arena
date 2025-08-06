@@ -91,3 +91,15 @@ void arena_free(Arena* arena) {
     arena -> start = NULL;
     arena -> end = NULL;
 }
+
+size_t total_memory(Arena* arena) {
+    Block* current = arena -> start;
+    size_t total = 0;
+
+    while (current != NULL) {
+        total += current -> usage;
+        current = current -> next;
+    }
+    
+    return total;
+}

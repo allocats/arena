@@ -34,4 +34,6 @@ char* arena_strdup(Arena* arena, const char* str);
 
 void arena_free(Arena* arena); 
 
+size_t total_memory(Arena* arena);
+
 #endif // !ARENA_H

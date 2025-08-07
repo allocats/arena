@@ -4,7 +4,7 @@ Arena Allocator in C, arenas work by allocating memory up front then segmenting 
 
 ## Setup  
 
-To use the arena allocator, you **must** define `USING_ARENA` **before** including the header:
+To use the arena allocator, you **must** define `USING_ARENA` **before** including the header (Found in src/arena.h):
 ```
 #define USING_ARENA
 #include "arena.h"

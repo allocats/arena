@@ -1,3 +1,4 @@
+#define USING_ARENA
 #include "../src/arena.h"
 #include <stdio.h>
 

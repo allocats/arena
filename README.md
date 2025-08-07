@@ -37,6 +37,42 @@ void arena_free(Arena* arena);  // Frees all memory
     (type*) arena_memset(arena_alloc(arena, sizeof(type) * (count)), 0, sizeof(type) * (count))  
 ```
 
+## Example Usage
+
+```
+#define USING_ARENA
+#include "arena.h"
+
+#include <stdio.h>
+
+// Define arena and initialise it
+static Arena arena = {0};
+
+typedef struct ListNode {
+    struct ListNode* next;
+    int value;
+} ListNode;
+
+int main() {
+    int* arr = arena_array(&arena, int, 10);
+
+    for (int i = 0; i < 10; i++) {
+        arr[i] = i;
+        printf("%d ", arr[i]);
+    }
+
+    char* msg = arena_strdup(&arena, "Hi there :3");
+    printf("%s\n", msg);
+
+    ListNode* node = arena_alloc(&arena, sizeof(ListNode));
+    node -> next = NULL;
+    node -> value = 9;
+    printf("node value: %d\n", node -> value);
+
+    arena_free(&arena);
+}
+```
+
 ## Credits
   
 This was inspired by tsoding's implementation ([arena](https://github.com/tsoding/arena)).  

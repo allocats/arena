@@ -1,4 +1,3 @@
-#define USING_ARENA
 #include "../src/arena.h"
 #include <stdio.h>
 
@@ -18,7 +17,7 @@ int main() {
         printf("%d ", arr[i]);
     }
 
-    char* msg = arena_strdup(&arena, "Hi there :3");
+    char* msg = arena_strdup(&arena, "Hi there");
     printf("%s\n", msg);
 
     ListNode* node = arena_alloc(&arena, sizeof(ListNode));

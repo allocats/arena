@@ -5,7 +5,6 @@
  *
  *  Usage:
  *
- *      #define USING_ARENA
  *      #include "arena.h"
  *
  */

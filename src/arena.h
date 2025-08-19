@@ -12,6 +12,10 @@
 #ifndef ARENA_H
 #define ARENA_H 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -201,5 +205,9 @@ static size_t total_usage(Arena* arena) {
     
     return total;
 }
+
+#ifdef __cplusplus 
+}
+#endif
 
 #endif // !ARENA_H

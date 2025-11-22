@@ -28,10 +28,10 @@ void* arena_realloc_sse2(ArenaAllocator* arena, void* ptr, const size_t old_size
     }
 
     while (copy_size >= 64) {
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 0), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 0)));
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 1), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 1)));
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 2), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 2)));
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 3), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 3)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 0), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 0)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 1), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 1)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 2), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 2)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 3), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 3)));
 
         new_ptr += 64;
         old_ptr += 64;
@@ -39,9 +39,9 @@ void* arena_realloc_sse2(ArenaAllocator* arena, void* ptr, const size_t old_size
     }
 
     while (copy_size >= 48) {
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 0), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 0)));
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 1), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 1)));
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 2), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 2)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 0), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 0)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 1), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 1)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 2), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 2)));
 
         new_ptr += 48;
         old_ptr += 48;
@@ -49,8 +49,8 @@ void* arena_realloc_sse2(ArenaAllocator* arena, void* ptr, const size_t old_size
     }
 
     while (copy_size >= 32) {
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 0), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 0)));
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 1), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 1)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 0), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 0)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 1), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 1)));
 
         new_ptr += 32;
         old_ptr += 32;
@@ -58,7 +58,7 @@ void* arena_realloc_sse2(ArenaAllocator* arena, void* ptr, const size_t old_size
     }
 
     while (copy_size >= 16) {
-        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 0), _mm_load_si128((const __m128i*) SSE2_CHUNK(old_ptr, 0)));
+        _mm_store_si128((__m128i*) SSE2_CHUNK(new_ptr, 0), _mm_loadu_si128((const __m128i*) SSE2_CHUNK(old_ptr, 0)));
 
         new_ptr += 16;
         old_ptr += 16;

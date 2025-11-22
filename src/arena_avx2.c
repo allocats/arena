@@ -28,10 +28,10 @@ void* arena_realloc_avx2(ArenaAllocator* arena, void* ptr, const size_t old_size
     }
 
     while (copy_size >= 128) {
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 0), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 0)));
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 1), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 1)));
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 2), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 2)));
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 3), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 3)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 0), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 0)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 1), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 1)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 2), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 2)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 3), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 3)));
 
         new_ptr += 128;
         old_ptr += 128;
@@ -39,9 +39,9 @@ void* arena_realloc_avx2(ArenaAllocator* arena, void* ptr, const size_t old_size
     }
 
     while (copy_size >= 96) {
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 0), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 0)));
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 1), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 1)));
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 2), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 2)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 0), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 0)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 1), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 1)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 2), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 2)));
 
         new_ptr += 96;
         old_ptr += 96;
@@ -49,8 +49,8 @@ void* arena_realloc_avx2(ArenaAllocator* arena, void* ptr, const size_t old_size
     }
 
     while (copy_size >= 64) {
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 0), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 0)));
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 1), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 1)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 0), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 0)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 1), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 1)));
 
         new_ptr += 64;
         old_ptr += 64;
@@ -58,7 +58,7 @@ void* arena_realloc_avx2(ArenaAllocator* arena, void* ptr, const size_t old_size
     }
 
     while (copy_size >= 32) {
-        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 0), _mm256_load_si256((const __m256i*) AVX2_CHUNK(old_ptr, 0)));
+        _mm256_store_si256((__m256i*) AVX2_CHUNK(new_ptr, 0), _mm256_loadu_si256((const __m256i*) AVX2_CHUNK(old_ptr, 0)));
 
         new_ptr += 32;
         old_ptr += 32;
